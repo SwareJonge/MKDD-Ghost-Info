@@ -281,34 +281,26 @@ namespace WindowsFormsApp4
             {
                 byte[] InputDataLengthArray = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x148E).Take(2).ToArray();
                 ushort InputDataLength = BitConverter.ToUInt16(new byte[2] { InputDataLengthArray[1], InputDataLengthArray[0] }, 0);
-                InputDataLength += 1; // this fixed reading the last byte of the Input data  
-
-                byte[] FinishTime = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x146B).Take(8).ToArray();
-                var str = Encoding.Default.GetString(FinishTime);
-
                 int Length = InputDataLength * 2;
-
-                byte[] Characters = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x1480).Take(2).ToArray();
-                byte[] KartID = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x1482).Take(1).ToArray();
-                byte[] CourseID = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x1483).Take(1).ToArray();
-
-
+                byte[] FinishTime = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x146B).Take(8).ToArray();
+                var str = Encoding.Default.GetString(FinishTime);                
+                byte[] IDs = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x1480).Take(4).ToArray();
                 dataGridView1.Rows.Clear();
 
-                int i = 0;
+                int i = 1;
                 while (i < Length)
                 {
                     i += 1;
                     byte[] Inputs = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x14A8 + i).Take(2).ToArray();
-                    dataGridView1.Rows.Add(i / 2, "0x" + Inputs[1].ToString("X2"), "0x" + Inputs[0].ToString("X2"));
+                    dataGridView1.Rows.Add(i / 2, "0x" + Inputs[0].ToString("X2"), "0x" + Inputs[1].ToString("X2"));
                     i++;
                 }
                 label3.Text = str;
                 label4.Text = InputDataLength.ToString();
-                label8.Text = GetCharInfo(Characters[0]);
-                label9.Text = GetCharInfo(Characters[1]);
-                label10.Text = GetKartID(KartID[0]);
-                label11.Text = GetCourseID(CourseID[0]);
+                label8.Text = GetCharInfo(IDs[0]);
+                label9.Text = GetCharInfo(IDs[1]);
+                label10.Text = GetKartID(IDs[2]);
+                label11.Text = GetCourseID(IDs[3]);
             }
             else
             {
