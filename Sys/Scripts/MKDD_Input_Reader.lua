@@ -34,11 +34,13 @@ function onScriptCancel()
 end
 
 function onScriptUpdate()
+  local currentFrame = 0
 	if getGameID() == "GM4P01" then ReadValue32(0x810E2790)
 	elseif getGameID() == "GM4E01"then currentFrame = ReadValue32(0x810A3250)
 	elseif getGameID() == "GM4J01"then currentFrame = ReadValue32(0x810BD870)
+        else onScriptCancel()
 	end
-	local currentFrame = currentFrame + 1
+	currentFrame = currentFrame + 1
 
 	if currentFrame <= frameCount then
 
