@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApp4", "WindowsFormsApp4\WindowsFormsApp4.csproj", "{F9AD9270-E311-41C4-AAF2-0AFC63912D32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKDD_Ghost_Info", "MKDD-Ghost-Info\MKDD_Ghost_Info.csproj", "{F9AD9270-E311-41C4-AAF2-0AFC63912D32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

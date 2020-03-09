@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp4
+﻿namespace MKDD_Ghost_Info
 {
     partial class Form1
     {
@@ -34,9 +34,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.FrameCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AnalogXY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ABLRXY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,6 +44,15 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.FrameCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.A = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.L = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Z = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +63,7 @@
             this.openToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(384, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(972, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -95,27 +101,18 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FrameCount,
-            this.AnalogXY,
-            this.ABLRXY});
+            this.Column5,
+            this.Column1,
+            this.A,
+            this.Column2,
+            this.Column3,
+            this.L,
+            this.Column4,
+            this.Z});
             this.dataGridView1.Location = new System.Drawing.Point(12, 105);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(360, 426);
+            this.dataGridView1.Size = new System.Drawing.Size(948, 426);
             this.dataGridView1.TabIndex = 6;
-            // 
-            // FrameCount
-            // 
-            this.FrameCount.HeaderText = "Frame";
-            this.FrameCount.Name = "FrameCount";
-            // 
-            // AnalogXY
-            // 
-            this.AnalogXY.HeaderText = "AnalogXY";
-            this.AnalogXY.Name = "AnalogXY";
-            // 
-            // ABLRXY
-            // 
-            this.ABLRXY.HeaderText = "ABLRXY";
-            this.ABLRXY.Name = "ABLRXY";
             // 
             // label2
             // 
@@ -207,11 +204,56 @@
             this.label12.TabIndex = 15;
             this.label12.Text = "Course:";
             // 
+            // FrameCount
+            // 
+            this.FrameCount.HeaderText = "Frame";
+            this.FrameCount.Name = "FrameCount";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "AnalogX";
+            this.Column5.Name = "Column5";
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "AnalogY";
+            this.Column1.Name = "Column1";
+            // 
+            // A
+            // 
+            this.A.HeaderText = "A";
+            this.A.Name = "A";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "B";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "R";
+            this.Column3.Name = "Column3";
+            // 
+            // L
+            // 
+            this.L.HeaderText = "L";
+            this.L.Name = "L";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "X";
+            this.Column4.Name = "Column4";
+            // 
+            // Z
+            // 
+            this.Z.HeaderText = "Z";
+            this.Z.Name = "Z";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 543);
+            this.ClientSize = new System.Drawing.Size(972, 543);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
@@ -245,9 +287,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FrameCount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AnalogXY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ABLRXY;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
@@ -258,6 +297,15 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FrameCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn A;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn L;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Z;
     }
 }
 
