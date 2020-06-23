@@ -25,7 +25,8 @@ namespace MKDD_Ghost_Info
             openFileDialog1.FileName = "";
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if(openFileDialog1.FileName.ToString().EndsWith(".gci"))
+                dataGridView1.Rows.Clear();
+                if (openFileDialog1.FileName.ToString().EndsWith(".gci"))
                 {
                     ConverterFunctions C = new ConverterFunctions();
                     byte[] InputDataLengthArray = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x148E).Take(2).ToArray();
@@ -33,8 +34,7 @@ namespace MKDD_Ghost_Info
                     int Length = InputDataLength * 2;
                     byte[] FinishTime = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x146B).Take(8).ToArray();
                     var str = Encoding.Default.GetString(FinishTime);
-                    byte[] IDs = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x1480).Take(4).ToArray();
-                    dataGridView1.Rows.Clear();
+                    byte[] IDs = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x1480).Take(4).ToArray();                    
                     string path = @"mkdd_input_reader_ghost.lua";
                     using (StreamWriter sw = File.CreateText(path))
                     {
@@ -85,7 +85,6 @@ namespace MKDD_Ghost_Info
                         TimeSpan t = TimeSpan.FromMilliseconds(FinishTime);
                         string str = string.Format("{0:D2}:{1:D2}:{2:D3}", t.Minutes, t.Seconds, t.Milliseconds);
                         byte[] IDs = File.ReadAllBytes(openFileDialog1.FileName).Skip(0x0).Take(4).ToArray();
-                        dataGridView1.Rows.Clear();
                         string path = @"mkdd_input_reader_ghost.lua";
                         using (StreamWriter sw = File.CreateText(path))
                         {
