@@ -1,9 +1,5 @@
 local input_runner = {}
 
-local function getGameID()
-    return ReadValueString(0x0, 6)
-end
-
 local runner_loaded = false
 
 local frameCount = 0
@@ -34,11 +30,17 @@ function onScriptCancel()
 end
 
 function onScriptUpdate()
-  local currentFrame = 0
-	if getGameID() == "GM4P01" then currentFrame = ReadValue32(0x810E2790)
-	elseif getGameID() == "GM4E01"then currentFrame = ReadValue32(0x810A3250)
-	elseif getGameID() == "GM4J01"then currentFrame = ReadValue32(0x810BD870)
+  local mspRecorder = 0
+	if GetGameID() == "GM4P01" then mspRecorder = 0x803d5c9c
+	elseif GetGameID() == "GM4E01"then mspRecorder = 0x803CBE5C
+	elseif GetGameID() == "GM4J01"then mspRecorder = 0x803E647C
   else onScriptCancel()
+	end
+
+	local mspRecorderResult = ReadValue32(mspRecorder)
+	local currentFrame = 0
+	if mspRecorderResult ~= 0 then
+			currentFrame = ReadValue32(mspRecorderResult) -- Doing it this way because people probably use old versions of Lua core
 	end
 	currentFrame = currentFrame + 1
 

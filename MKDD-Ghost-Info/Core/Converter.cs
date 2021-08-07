@@ -8,190 +8,12 @@ namespace MKDD_Ghost_Info.Core
 {
     class ConverterFunctions
     {
-        public string GetCharInfo(byte x)
-        {
-            if (x == 1)
-            {
-                return "Baby Mario";
-            }
-            if (x == 2)
-            {
-                return "Baby Luigi";
-            }
-            if (x == 3)
-            {
-                return "Patroopa";
-            }
-            if (x == 4)
-            {
-                return "Koopa";
-            }
-            if (x == 5)
-            {
-                return "Peach";
-            }
-            if (x == 6)
-            {
-                return "Daisy";
-            }
-            if (x == 7)
-            {
-                return "Mario";
-            }
-            if (x == 8)
-            {
-                return "Luigi";
-            }
-            if (x == 9)
-            {
-                return "Wario";
-            }
-            if (x == 10)
-            {
-                return "Waluigi";
-            }
-            if (x == 11)
-            {
-                return "Yoshi";
-            }
-            if (x == 12)
-            {
-                return "Birdo";
-            }
-            if (x == 13)
-            {
-                return "Donkey Kong";
-            }
-            if (x == 14)
-            {
-                return "Diddy Kong";
-            }
-            if (x == 15)
-            {
-                return "Bowser";
-            }
-            if (x == 16)
-            {
-                return "Bowser Jr.";
-            }
-            if (x == 17)
-            {
-                return "Toad";
-            }
-            if (x == 18)
-            {
-                return "Toadette";
-            }
-            if (x == 19)
-            {
-                return "King Boo";
-            }
-            if (x == 20)
-            {
-                return "Petey Piranha";
-            }
-            else
-            {
-                return "None";
-            }
-        }
-
-        public string GetKartID(byte x)
-        {
-
-            if (x == 0)
-            {
-                return "Red Fire";
-            }
-            if (x == 1)
-            {
-                return "DK Jumbo";
-            }
-            if (x == 2)
-            {
-                return "Turbo Yoshi";
-            }
-            if (x == 3)
-            {
-                return "Koopa Dasher";
-            }
-            if (x == 4)
-            {
-                return "Heart Coach";
-            }
-            if (x == 5)
-            {
-                return "Goo-Goo Buggy";
-            }
-            if (x == 6)
-            {
-                return "Wario Car";
-            }
-            if (x == 7)
-            {
-                return "Koopa King";
-            }
-            if (x == 8)
-            {
-                return "Green Fire";
-            }
-            if (x == 9)
-            {
-                return "Barrel Train";
-            }
-            if (x == 10)
-            {
-                return "Turbo Birdo";
-            }
-            if (x == 11)
-            {
-                return "Para Wing";
-            }
-            if (x == 12)
-            {
-                return "Bloom Coach";
-            }
-            if (x == 13)
-            {
-                return "Rattle Buggy";
-            }
-            if (x == 14)
-            {
-                return "Waluigi Racer";
-            }
-            if (x == 15)
-            {
-                return "Bullet Blaster";
-            }
-            if (x == 16)
-            {
-                return "Toad Kart";
-            }
-            if (x == 17)
-            {
-                return "Toadette Kart";
-            }
-            if (x == 18)
-            {
-                return "Boo Pipes";
-            }
-            if (x == 19)
-            {
-                return "Piranha Pipes";
-            }
-            if (x == 20)
-            {
-                return "Parade Kart";
-            }
-            else
-            {
-                return "Unknown ID";
-            }
-        }
+        public string[] ECharIDstrTable = new string[] {"NONE", "Baby Mario", "Baby Luigi" , "Patroopa", "Koopa", "Peach", "Daisy", "Mario", "Luigi", "Wario", "Waluigi", "Yoshi", "Birdo", "Donkey Kong", "Diddy Kong", "Bowser", "Bowser Jr.", "Toad", "Toadette", "King Boo", "Petey Piranha"};
+        public string[] EKartIDstrTable = new string[] {"Red Fire", "DK Jumbo", "Turbo Yoshi", "Koopa Dasher", "Heart Coach", "Goo-Goo Buggy", "Wario Car", "Koopa King", "Green Fire", "Barrel Train", "Turbo Birdo", "Para Wing", "Bloom Coach", "Rattle Buggy", "Waluigi Racer", "Bullet Blaster", "Toad Kart", "Toadette Kart", "Boo Pipes", "Piranha Pipes", "Parade Kart" };
 
         public string GetCourseID(byte x)
         {
-
+            // TODO Make this an array and add the unused course names too
             if (x == 0x21)
             {
                 return "Baby Park";
@@ -261,215 +83,71 @@ namespace MKDD_Ghost_Info.Core
                 return "Sherbet Land";
             }
         }
-        public byte ConvertAnalogY(int x)
+
+        public byte ConvertAnalogY(byte y, out byte origin)
         {
-            if (x == 3)
+            y = (byte)(((uint)y << 0x1d) >> 0x1d); // leave out the bits of the X axis
+            byte stickY = (byte)(y * 18);
+
+            byte stickPos = 128; // neutral
+            // convert JUTGamepad::CStick to PADStick
+            if (y >= 5) // down
             {
-                return 197;
+                stickPos = 0xE1; // -31
             }
-            if (x == 2)
+            else if (y >= 1 && y < 4) // up
             {
-                return 179;
+                stickPos = 143;
             }
-            if (x == 1)
-            {
-                return 161;
-            }
-            if (x == 7)
-            {
-                return 95;
-            }
-            if (x == 6)
-            {
-                return 77;
-            }
-            if (x == 5)
-            {
-                return 59;
-            }
-            else
-            {
-                return 128;
-            }
+            origin = y;
+            return (byte)(stickY + stickPos);
         }
 
-        public byte ConvertAnalogX(int x)
+        public byte ConvertAnalogX(byte x, out byte origin)
         {
-            if (x == 0x88)
+            x = (byte)(x >> 3); // shift 3 bits to the right to leave out the Y axis and to get the bits in the right position
+            byte stickX = (byte)(x * 4);
+
+            byte stickPos = 128; // neutral
+
+            // convert JUTGamepad::CStick to PADStick
+            if (x >= 16) // left
             {
-                return 53;
+                stickPos = 0xF1; // -15
             }
-            if (x == 0x90)
+            else if (x >= 1 && x <= 15) // right
             {
-                return 57;
+                stickPos = 143;
             }
-            if (x == 0x98)
-            {
-                return 61;
-            }
-            if (x == 0xA0)
-            {
-                return 65;
-            }
-            if (x == 0xA8)
-            {
-                return 69;
-            }
-            if (x == 0xB0)
-            {
-                return 73;
-            }
-            if (x == 0xB8)
-            {
-                return 77;
-            }
-            if (x == 0xC0)
-            {
-                return 81;
-            }
-            if (x == 0xC8)
-            {
-                return 85;
-            }
-            if (x == 0xD0)
-            {
-                return 89;
-            }
-            if (x == 0xD8)
-            {
-                return 93;
-            }
-            if (x == 0xE0)
-            {
-                return 97;
-            }
-            if (x == 0xE8)
-            {
-                return 101;
-            }
-            if (x == 0xF0)
-            {
-                return 105;
-            }
-            if (x == 0xF8)
-            {
-                return 109;
-            }
-            if (x == 0x08)
-            {
-                return 147;
-            }
-            if (x == 0x10)
-            {
-                return 151;
-            }
-            if (x == 0x18)
-            {
-                return 155;
-            }
-            if (x == 0x20)
-            {
-                return 159;
-            }
-            if (x == 0x28)
-            {
-                return 163;
-            }
-            if (x == 0x30)
-            {
-                return 167;
-            }
-            if (x == 0x38)
-            {
-                return 171;
-            }
-            if (x == 0x40)
-            {
-                return 175;
-            }
-            if (x == 0x48)
-            {
-                return 179;
-            }
-            if (x == 0x50)
-            {
-                return 183;
-            }
-            if (x == 0x58)
-            {
-                return 187;
-            }
-            if (x == 0x60)
-            {
-                return 191;
-            }
-            if (x == 0x68)
-            {
-                return 195;
-            }
-            if (x == 0x70)
-            {
-                return 199;
-            }
-            if (x == 0x78)
-            {
-                return 203;
-            }
-            else
-            {
-                return 128;
-            }
+            origin = x;
+            return (byte)(stickX + stickPos);
         }
 
         public byte checkIfAPressed(byte x)
         {
-            if ((x & (1 << 0)) != 0)
-            {
-                return 1;
-            }
-            return 0;
+            return Convert.ToByte((x & 1) != 0);
         }
         public byte checkIfBPressed(byte x)
         {
-            if ((x & (1 << 1)) != 0)
-            {
-                return 1;
-            }
-            return 0;
+            return Convert.ToByte((x & 0x2) != 0);
         }
         public byte checkIfXPressed(byte x)
         {
-            if ((x & (1 << 2)) != 0 || (x & (1 << 3)) != 0)
-            {
-                return 1;
-            }
-            return 0;
+            return Convert.ToByte(((x & 0x4) != 0) || ((x & 0x8) != 0));
         }
         public byte checkIfRPressed(byte x)
         {
-            if ((x & (1 << 5)) != 0)
-            {
-                return 1;
-            }
-            return 0;
+            return Convert.ToByte((x & 0x20) != 0);
         }
 
         public byte checkIfLPressed(byte x)
         {
-            if ((x & (1 << 4)) != 0)
-            {
-                return 1;
-            }
-            return 0;
+            return Convert.ToByte((x & 0x10) != 0);
         }
 
         public byte checkIfZPressed(byte x)
         {
-            if ((x & (1 << 6)) != 0)
-            {
-                return 1;
-            }
-            return 0;
+            return Convert.ToByte((x & 0x40) != 0);
         }
 
     }

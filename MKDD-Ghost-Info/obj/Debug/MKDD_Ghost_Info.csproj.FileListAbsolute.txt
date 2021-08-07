@@ -1,0 +1,9 @@
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\bin\Debug\MKDD_Ghost_Info.exe.config
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\bin\Debug\MKDD_Ghost_Info.exe
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\bin\Debug\MKDD_Ghost_Info.pdb
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\obj\Debug\MKDD_Ghost_Info.csprojResolveAssemblyReference.cache
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\obj\Debug\MKDD_Ghost_Info.Form1.resources
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\obj\Debug\MKDD_Ghost_Info.Properties.Resources.resources
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\obj\Debug\MKDD_Ghost_Info.csproj.GenerateResource.Cache
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\obj\Debug\MKDD_Ghost_Info.exe
+C:\Users\SwareJonge\Desktop\GIT\MKDD-Ghost-Info\MKDD-Ghost-Info\obj\Debug\MKDD_Ghost_Info.pdb

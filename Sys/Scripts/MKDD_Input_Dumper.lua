@@ -17,11 +17,22 @@ io.output(write_file)
 function onScriptStart()
   local InputTableStartAddress = 0
   local currentFrame = 0
-  if getGameID() == "GM4P01" then currentFrame = ReadValue32(0x810E2790) InputTableStartAddress = 0x810E2950
-  elseif getGameID() == "GM4E01" then currentFrame = ReadValue32(0x810A3250) InputTableStartAddress = 0x810A3410
-  elseif getGameID() == "GM4J01" then currentFrame = ReadValue32(0x810BD870) InputTableStartAddress = 0x810BDA30
+
+  -- with this approach we don't have to worry about incorrect addresses however the pointer to the inputtablestartaddress gets cleared after the race is done
+  if GetGameID() == "GM4P01" then mspRecorder = 0x803D5C9C
+	elseif GetGameID() == "GM4E01"then mspRecorder = 0x803CBE5C
+	elseif GetGameID() == "GM4J01"then mspRecorder = 0x803E647C
   else onScriptCancel()
   end
+
+  local mspRecorderResult = ReadValue32(mspRecorder)
+  local currentFrame = 0
+	if mspRecorderResult ~= 0 then
+			InputTableStartAddress = ReadValue32(mspRecorderResult + 0xD0)
+      	currentFrame = ReadValue32(mspRecorderResult) -- Doing it this way because people probably use old versions of Lua core
+	end
+
+  MsgBox(string.format("%X", InputTableStartAddress))
   local Length = currentFrame * 2 -1
   for i = 0, Length, 1 do
         --local Array =
