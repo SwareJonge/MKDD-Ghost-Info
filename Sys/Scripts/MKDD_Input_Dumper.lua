@@ -17,6 +17,7 @@ io.output(write_file)
 function onScriptStart()
   local InputTableStartAddress = 0
   local currentFrame = 0
+  local mspRecorder = 0
 
   -- with this approach we don't have to worry about incorrect addresses however the pointer to the inputtablestartaddress gets cleared after the race is done
   if GetGameID() == "GM4P01" then mspRecorder = 0x803D5C9C
